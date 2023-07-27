@@ -207,3 +207,9 @@ Running automated tests
 
 <!-- starts downloading, extracting, installing, testing and launching the application -->
 -> docker-compose up
+
+_____
+
+YML and JSON format
+Docker Compose tutorial 9min in
+https://www.youtube.com/watch?v=HG6yIjZapSA
