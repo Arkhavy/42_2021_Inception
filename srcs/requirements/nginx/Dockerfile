@@ -11,4 +11,7 @@ RUN openssl req -x509 -nodes -newkey rsa:2048 -days 365 \
 	-out /etc/ssl/certs/nginx-selfsigned.crt \
 	-subj "/C=FR/ST=Auvergne-Rhone-Alpes/L=Lyon/UID=ljohnson/emailAddress=ljohnson@student.42lyon.fr"
 
+RUN chmod 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html
+
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
