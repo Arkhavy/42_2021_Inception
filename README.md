@@ -64,9 +64,9 @@ All links from the list below are from this page : [Compose file version 3 refer
 - [`name`](https://docs.docker.com/compose/compose-file/compose-file-v3/#name) : Set a custom name for this volume.
 - [`driver`](https://docs.docker.com/compose/compose-file/compose-file-v3/#driver) : Specify which volume driver should be used.
 - [`driver_opts`](https://docs.docker.com/compose/compose-file/compose-file-v3/#driver_opts) : Specifies a list of options as key-value pairs to pass to the driver for this volume. Driver-dependent.
-- `type` : 
-- `o`
-- `device`
+- `type` : TODO
+- `o` : TODO
+- `device` : TODO
 <br>
 
 ###### [top-level `networks`](https://docs.docker.com/compose/compose-file/compose-file-v3/#network-configuration-reference) : Defines networks to be created.
@@ -127,15 +127,15 @@ The Dockerfile instructions `ADD` and `COPY` are used to copy files and director
 
    The use of remote URLs is a unique feature of `ADD`, and it can be useful for downloading and incorporating external resources into the image.
 
-The general recommendation is to use `COPY` over `ADD` unless one of the additional features of `ADD` is specifically needed. The Docker best practices guide advises using `COPY` to avoid potential confusion and to have more control over what is being copied into the image ^[1]^^[2]^. Using `COPY` is considered a best practice because it provides a clear and explicit way to copy files and directories, without any unexpected behavior or additional layers in the image ^[1]^.
+The general recommendation is to use `COPY` over `ADD` unless one of the additional features of `ADD` is specifically needed. The Docker best practices guide advises using `COPY` to avoid potential confusion and to have more control over what is being copied into the image [1][2]. Using `COPY` is considered a best practice because it provides a clear and explicit way to copy files and directories, without any unexpected behavior or additional layers in the image [1].
 
-It's worth noting that both `COPY` and `ADD` instructions create new layers in the Docker image. Minimizing the number of layers in the image is recommended for better performance and smaller image size ^[4]^.
+It's worth noting that both `COPY` and `ADD` instructions create new layers in the Docker image. Minimizing the number of layers in the image is recommended for better performance and smaller image size [4].
 
 ### What do I have to know to make a good docker-compose.yml file ?
 
 To create a good `docker-compose.yml` file, there are a few key things you need to know:
 
-1. Understand the basics of Docker Compose: Docker Compose is a tool used to define and manage multi-container applications. It allows you to define the services, networks, and volumes required for your application in a YAML file. With Docker Compose, you can launch and manage multiple containers with a single command^[5]^.
+1. Understand the basics of Docker Compose: Docker Compose is a tool used to define and manage multi-container applications. It allows you to define the services, networks, and volumes required for your application in a YAML file. With Docker Compose, you can launch and manage multiple containers with a single command[5].
 
 2. Familiarize yourself with the syntax and structure of a `docker-compose.yml` file: A `docker-compose.yml` file consists of version, services, networks, and volumes sections. Here's a basic example:
 
@@ -157,7 +157,7 @@ To create a good `docker-compose.yml` file, there are a few key things you need 
    - The `version` specifies the version of the Docker Compose syntax being used.
    - The `services` section defines the containers that make up your application.
    - The `networks` section defines the networks your containers will be connected to.
-   - The `volumes` section defines the volumes that will be mounted to your containers^[6]^.
+   - The `volumes` section defines the volumes that will be mounted to your containers[6].
 
 3. Specify the services: In the `services` section of your `docker-compose.yml` file, you define the containers that make up your application. For each service, you need to specify the image, ports, volumes, environment variables, and any other configuration specific to that service. Here's an example:
 
@@ -176,7 +176,7 @@ To create a good `docker-compose.yml` file, there are a few key things you need 
        ...
    ```
 
-   In this example, `service1` is defined with an image, port mapping, volume mapping, and an environment variable. Adjust these settings based on the requirements of your application^[6]^.
+   In this example, `service1` is defined with an image, port mapping, volume mapping, and an environment variable. Adjust these settings based on the requirements of your application[6].
 
 4. Define networks and volumes: In addition to services, you may need to define networks and volumes in your `docker-compose.yml` file. Networks allow containers to communicate with each other, and volumes provide persistent storage for your containers. Here's an example:
 
@@ -190,7 +190,7 @@ To create a good `docker-compose.yml` file, there are a few key things you need 
      volume2:
    ```
 
-   You can then specify the networks and volumes in the services section as needed^[6]^.
+   You can then specify the networks and volumes in the services section as needed[6].
 
 5. Consider best practices: To create a well-structured and maintainable `docker-compose.yml` file, consider the following best practices:
 
@@ -198,9 +198,9 @@ To create a good `docker-compose.yml` file, there are a few key things you need 
    - Use environment variables: Use environment variables to make your `docker-compose.yml` file configurable and reusable across different environments.
    - Use named volumes: Instead of relying on host-mounted volumes, use named volumes to provide a more portable and scalable solution.
    - Use aliases and links: Use container aliases and links to establish communication between containers.
-   - Use container health checks: Include health checks in your `docker-compose.yml` file to ensure the availability and reliability of your services^[7]^.
+   - Use container health checks: Include health checks in your `docker-compose.yml` file to ensure the availability and reliability of your services[7].
 
-Remember, these are just general guidelines, and the specific requirements of your application may vary. It's always a good idea to refer to the official Docker documentation and other reliable sources for more detailed information and examples^[5]^^[7]^.
+Remember, these are just general guidelines, and the specific requirements of your application may vary. It's always a good idea to refer to the official Docker documentation and other reliable sources for more detailed information and examples[5][7].
 
 *Phind Sources*:
 - [Source 1](https://www.baeldung.com/ops/docker-copy-add)
@@ -213,9 +213,9 @@ Remember, these are just general guidelines, and the specific requirements of yo
 
 _____
 Alternative Ressources used
-[Getting started with dockerfile](https://docker-community-leaders.github.io/dockercommunity/docs/communityleaders/eventhandbooks/docker101/dockerfile/)
-[What is Dockerfile ? A step-by-step guide (2023)](https://www.simplilearn.com/tutorials/docker-tutorial/what-is-dockerfile)
-[Important instructions used in dockerfile](https://www.tutorialspoint.com/important-instructions-used-in-dockerfile)
-[Docker official documentation : Best practices for writing dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
-[Docker official documentation : Packaging your software : Dockerfile](https://docs.docker.com/build/building/packaging/)
-[Docker Compose Tutorial: advanced Docker made simple](https://www.educative.io/blog/docker-compose-tutorial)
+- [Getting started with dockerfile](https://docker-community-leaders.github.io/dockercommunity/docs/communityleaders/eventhandbooks/docker101/dockerfile/)
+- [What is Dockerfile ? A step-by-step guide (2023)](https://www.simplilearn.com/tutorials/docker-tutorial/what-is-dockerfile)
+- [Important instructions used in dockerfile](https://www.tutorialspoint.com/important-instructions-used-in-dockerfile)
+- [Docker official documentation : Best practices for writing dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+- [Docker official documentation : Packaging your software : Dockerfile](https://docs.docker.com/build/building/packaging/)
+- [Docker Compose Tutorial: advanced Docker made simple](https://www.educative.io/blog/docker-compose-tutorial)
