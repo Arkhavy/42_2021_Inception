@@ -1,0 +1,136 @@
+version: "3.8"
+
+services:
+#//////////////////////////////////////////////////////////////////////////////
+# Nginx
+#//////////////////////////////////////////////////////////////////////////////
+  nginx:
+    container_name: nginx
+    depends_on:
+      - wordpress
+    build:
+      context: ./requirements/nginx
+    image : nginx
+    volumes:
+      - wordpress:/var/www/html/wordpress
+    networks:
+      - inception
+    ports:
+      - "443:443"
+    restart: always
+
+#//////////////////////////////////////////////////////////////////////////////
+# MariaDB
+#//////////////////////////////////////////////////////////////////////////////
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./requirements/mariadb
+      args:
+        DB_NAME: $(DB_NAME)
+        DB_USER: $(DB_USER)
+        DB_USER_PW: $(DB_USER_PW)
+        DB_ROOT_PW: $(DB_ROOT_PW)
+    env_file:
+      - .env
+    image: mariadb
+    volumes:
+      - mariadb:/var/lib/mysql
+    networks:
+      - inception
+    restart: always
+
+#//////////////////////////////////////////////////////////////////////////////
+# WordPress
+#//////////////////////////////////////////////////////////////////////////////
+  wordpress:
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    build:
+      context: ./requirements/wordpress
+    env_file:
+      - .env
+    image: wordpress
+    volumes:
+      - wordpress:/var/www/html/wordpress
+    networks:
+      - inception
+    restart: always
+
+#//////////////////////////////////////////////////////////////////////////////
+# Networks
+#//////////////////////////////////////////////////////////////////////////////
+networks:
+  inception:
+    name: inception
+    driver: bridge
+
+#//////////////////////////////////////////////////////////////////////////////
+# Volumes
+#//////////////////////////////////////////////////////////////////////////////
+volumes:
+	mariadb:
+		name: mariadb
+		driver: local
+		driver_opts:
+			type: none
+			o: bind
+			device: /home/arkhavy/data/mariadb
+	wordpress:
+		name: wordpress
+		driver: local
+		driver_opts:
+			type: none
+			o: bind
+			device: /home/arkhavy/data/wordpress
+
+
+
+
+###############################################################################
+###############################################################################
+###############################################################################
+services:
+  <name>:
+    init: ...
+    environment:
+      ...
+    build:
+      context: ...
+      args:
+        ...
+    image: ...
+    container_name: ...
+    ports:
+      ...
+    volumes:
+      ...
+    depends_on:
+      ...
+    networks:
+      ...
+    restart: ...
+    env_file:
+      ...
+###############################################################################
+###############################################################################
+###############################################################################
+networks:
+  <name>:
+    driver: ...
+    name: ...
+###############################################################################
+###############################################################################
+###############################################################################
+volumes:
+  <name>:
+    name: ...
+    driver: ...
+    driver_opts:
+      type: ...
+      o: ...
+      device: ...
+###############################################################################
+###############################################################################
+###############################################################################
