@@ -1,6 +1,5 @@
-Documentation
+# Inception : all important parts of the project from my point of view
 
-_____
 # Makefile
 
 # [docker-compose](https://docs.docker.com/engine/reference/commandline/compose/)
@@ -64,9 +63,10 @@ All links from the list below are from this page : [Compose file version 3 refer
 - [`name`](https://docs.docker.com/compose/compose-file/compose-file-v3/#name) : Set a custom name for this volume.
 - [`driver`](https://docs.docker.com/compose/compose-file/compose-file-v3/#driver) : Specify which volume driver should be used.
 - [`driver_opts`](https://docs.docker.com/compose/compose-file/compose-file-v3/#driver_opts) : Specifies a list of options as key-value pairs to pass to the driver for this volume. Driver-dependent.
-- `type` : TODO
-- `o` : TODO
-- `device` : TODO
+- `driver : local` is the [standard linux mount](https://man7.org/linux/man-pages/man8/mount.8.html) options.
+- `type` : Specifies the type of volume driver to use. `none` indicates the service does not require any persistent storage.
+- `o` : Specifies the mount options for the volume. `bind` is a way to mount a directory from the host machine into the container.
+- `device` : Specifies the path on the host machine that is mounted into the container.
 <br>
 
 ###### [top-level `networks`](https://docs.docker.com/compose/compose-file/compose-file-v3/#network-configuration-reference) : Defines networks to be created.
@@ -102,6 +102,20 @@ _____
 - `EXPOSE` : Informs Docker that the container listens on the specified network ports at runtime. Purely informational, does not actually publish the port.
 - `ENV` : Sets the environment variable key-value pair. This value will be in the environment for all subsequent instructions in the build stage.
 - `WORKDIR` : Sets the working directory for any `RUN`, `CMD`, `ENTRYPOINT`, `COPY` and `ADD` instructions that follows this instruction.
+
+_____
+# NGINX Part
+
+- [Ubuntu NGINX Installation tutorial](https://ubuntu.com/tutorials/install-and-configure-nginx)
+- [dumb-init](https://github.com/Yelp/dumb-init) : PID 1 handling.
+- [openssl](https://www.digicert.com/kb/csr-ssl-installation/nginx-openssl.htm) : Key and Certificate creation.
+- [fastCGI](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html) : Communication between NGINX and application server (wordpress / php-fpm).
+
+_____
+# MariaDB Part
+
+- TODO
+
 _____
 # Phind questions and answers
 
@@ -202,14 +216,54 @@ To create a good `docker-compose.yml` file, there are a few key things you need 
 
 Remember, these are just general guidelines, and the specific requirements of your application may vary. It's always a good idea to refer to the official Docker documentation and other reliable sources for more detailed information and examples[5][7].
 
+### Can you explain like I'm 5 how fastcgi works with nginx ?
+
+FastCGI is a protocol used by Nginx to communicate with application servers that process dynamic content. To explain it like you're 5:
+
+1. Nginx is like a waiter at a restaurant. It takes requests from customers (web browsers) and serves them the food (web pages) they ordered.
+2. Sometimes, the food needs to be cooked by a chef (application server) before it can be served. FastCGI is like a special language that the waiter and chef use to talk to each other and coordinate the cooking process.
+3. The waiter (Nginx) sends the order to the chef (application server) using the FastCGI protocol. The chef then prepares the food (processes the request) and sends it back to the waiter.
+4. The waiter (Nginx) serves the cooked food (response) to the customer (web browser), who can then enjoy the delicious web page.
+
+Here are some key points about how FastCGI works with Nginx, based on the search results:
+
+- Nginx can use FastCGI to proxy requests to application servers that process dynamic content[8].
+- FastCGI is a protocol that allows Nginx to communicate with the application server efficiently and handle dynamic content requests[8].
+- FastCGI is commonly used for PHP processing with Nginx, where Nginx acts as a proxy to a separate PHP processor like php-fpm[8].
+- FastCGI configurations in Nginx can be declared at a general scope to avoid repetition and improve maintainability[8].
+- Nginx provides directives, parameters, and variables to configure FastCGI settings, such as the FastCGI backend, script filenames, and query strings[8].
+- To configure Nginx to proxy requests to a FastCGI server, you can use the `fastcgi_pass` directive and set the appropriate parameters, such as the script filename and query string[9][10].
+
+Here's an example configuration for Nginx to work with a FastCGI server, such as PHP-FPM[10]:
+
+```
+server {
+    location / {
+        fastcgi_pass  localhost:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param QUERY_STRING    $query_string;
+    }
+    location ~ \.(gif|jpg|png)$ {
+        root /data/images;
+    }
+}
+```
+
+In this configuration, Nginx will route all requests (except for static images) to the FastCGI server operating on `localhost:9000` using the FastCGI protocol. The `SCRIPT_FILENAME` parameter is used to determine the script name, and the `QUERY_STRING` parameter is used to pass request parameters[10].
+
+Overall, FastCGI allows Nginx to efficiently handle dynamic content requests by communicating with application servers using a specialized protocol, ensuring fast and reliable delivery of web pages to users.
+
 *Phind Sources*:
-- [Source 1](https://www.baeldung.com/ops/docker-copy-add)
-- [Source 2](https://linuxhandbook.com/dockerfile-copy-add-difference/)
-- [Source 3](https://www.pluralsight.com/resources/blog/cloud/docker-copy-vs-add-whats-the-difference)
-- [Source 4](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
-- [Source 5](https://www.howtogeek.com/devops/what-is-docker-compose-and-how-do-you-use-it/)
-- [Source 6](https://medium.com/freestoneinfotech/simplifying-docker-compose-operations-using-makefile-26d451456d63)
-- [Source 7](https://docs.docker.com/get-started/08_using_compose/)
+- [Source 1 : baeldung.com : Docker copy & add difference](https://www.baeldung.com/ops/docker-copy-add)
+- [Source 2 : linuxhandbook.com : Docker copy & add difference](https://linuxhandbook.com/dockerfile-copy-add-difference/)
+- [Source 3 : pluralsight.com : Docker copy & add difference](https://www.pluralsight.com/resources/blog/cloud/docker-copy-vs-add-whats-the-difference)
+- [Source 4 : docs.docker.com : Dockerfile best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+- [Source 5 : howtogeek.com : What is docker-compose](https://www.howtogeek.com/devops/what-is-docker-compose-and-how-do-you-use-it/)
+- [Source 6 : medium.com : Docker-compose and Makefile](https://medium.com/freestoneinfotech/simplifying-docker-compose-operations-using-makefile-26d451456d63)
+- [Source 7 : docs.docker.com : Get started using Compose](https://docs.docker.com/get-started/08_using_compose/)
+- [Source 8 : digitalocean.com : Understanding FastCGI](https://www.digitalocean.com/community/tutorials/understanding-and-implementing-fastcgi-proxying-in-nginx)
+- [Source 9 : nginx.org : FastCGI module](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html)
+- [Source 10 : nginx.org : Beginners guide](https://nginx.org/en/docs/beginners_guide.html)
 
 _____
 Alternative Ressources used
@@ -219,3 +273,4 @@ Alternative Ressources used
 - [Docker official documentation : Best practices for writing dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 - [Docker official documentation : Packaging your software : Dockerfile](https://docs.docker.com/build/building/packaging/)
 - [Docker Compose Tutorial: advanced Docker made simple](https://www.educative.io/blog/docker-compose-tutorial)
+- [Github : Dumb init, PID 1 handler](https://github.com/Yelp/dumb-init)

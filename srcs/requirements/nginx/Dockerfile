@@ -6,7 +6,7 @@ RUN apt update -y && apt upgrade -y
 RUN apt install -y nginx openssl dumb-init
 
 # NGINX configuration file
-	# Doing a symbolic link from sites-available to sites-enabled
+	# Doing a symbolic link from sites-available to sites-enabled like default file
 COPY /conf/nginx.conf /etc/nginx/sites-available/ljohnson.42.fr.conf
 RUN ln -s /etc/nginx/sites-available/ljohnson.42.fr.conf /etc/nginx/sites-enabled/ljohnson.42.fr.conf
 
