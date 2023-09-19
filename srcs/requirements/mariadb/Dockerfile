@@ -25,5 +25,7 @@ RUN mysql -u root -e	"CREATE DATABASE IF NOT EXISTS ${DB_NAME}; \
 EXPOSE 3306
 
 # Start of the container
+# mysqld is the MySQL server daemon process that runs in the background and handles client connections.
+# --bind-address=0.0.0.0 sets the IP address, 0.0.0.0 means the server will listen on all available network interfaces.
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["mysqld", "--bind-address=0.0.0.0"]

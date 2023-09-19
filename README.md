@@ -2,7 +2,7 @@
 
 # Makefile
 
-# [docker-compose](https://docs.docker.com/engine/reference/commandline/compose/)
+## [docker-compose](https://docs.docker.com/engine/reference/commandline/compose/)
 
 ### [Command Line Interface (CLI) overview](https://docs.docker.com/compose/reference/)
 
@@ -112,9 +112,20 @@ _____
 - [fastCGI](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html) : Communication between NGINX and application server (wordpress / php-fpm).
 
 _____
-# MariaDB Part
+# MariaDB / mysql Part
 
-- TODO
+- [Account Management Statements](https://dev.mysql.com/doc/refman/8.0/en/account-management-statements.html)
+<br>
+
+- `CREATE DATABASE <database_name>;` : [Create a database.](https://dev.mysql.com/doc/refman/8.0/en/create-database.html)
+- `DROP DATABASE <database_name>;` : [Delete a database.](https://dev.mysql.com/doc/refman/8.0/en/drop-database.html)
+- `CREATE USER '<username>'@'<host>';` : [Create a user.](https://dev.mysql.com/doc/refman/8.0/en/create-user.html)
+- `CREATE USER '<username>'@'<host>' IDENTIFIED BY '<password>';` : Create a user and set user's password.
+- `ALTER USER '<username>'@'<host>' IDENTIFIED BY '<new_password>';` : [Change a user's password.](https://dev.mysql.com/doc/refman/8.0/en/alter-user.html)
+- `DROP USER '<username>'@'<host>';` : [Delete a user.](https://dev.mysql.com/doc/refman/8.0/en/drop-user.html)
+- `GRANT <privileges> ON <database_name> TO '<username>'@'<host>';` : [Give privileges](https://dev.mysql.com/doc/refman/8.0/en/grant.html) to a user on a database.
+- `REVOKE <privileges> ON <database_name> FROM '<username>'@'<host>';` : [Remove privileges](https://dev.mysql.com/doc/refman/8.0/en/revoke.html) from a user on a database.
+- `FLUSH PRIVILEGES;` : [Reload all privilege changes to update them.](https://dev.mysql.com/doc/refman/8.0/en/flush.html) *personal note : should not be needed with grant and revoke, used as security.*
 
 _____
 # Phind questions and answers
