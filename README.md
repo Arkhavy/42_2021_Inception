@@ -128,6 +128,31 @@ _____
 - `FLUSH PRIVILEGES;` : [Reload all privilege changes to update them.](https://dev.mysql.com/doc/refman/8.0/en/flush.html) *personal note : should not be needed with grant and revoke, used as security.*
 
 _____
+# Wordpress / php-fpm Part
+
+- [wp-cli : Wordpress Command Line Interface](https://github.com/wp-cli/wp-cli)
+- [wp-cli : wp-cli complete list of commands commands](https://developer.wordpress.org/cli/commands/)
+- [PHP-FPM](https://www.php.net/manual/en/install.fpm.php), or `PHP FastCGI Process Manager` is an implementation commonly used with web servers like nginx to handle php requests.
+<br>
+
+- `www.conf` file : php-fpm configuration file, here just to change the line from `listen = /run/php/php7.3-fpm.sock` to `listen = wordpress:9000`
+- `listen` directive : specifies the address on which php-fpm will accept FastCGI requests.
+<br>
+
+- [`wp core download`](https://developer.wordpress.org/cli/commands/core/download/) : Downloads the Wordpress core files.
+- [`wp config create`](https://developer.wordpress.org/cli/commands/config/create/) : Creates a new wp-config.php file with the necessary db constants and verifies that the db constants are correct.
+- [`wp core install`](https://developer.wordpress.org/cli/commands/core/install/) : Installs Wordpress with the provided configuration.
+- [`wp plugin update`](https://developer.wordpress.org/cli/commands/plugin/update/) : Updates a Wordpress plugin to the latest version.
+- [`wp user create`](https://developer.wordpress.org/cli/commands/user/create/) : Creates a new Wordpress user.
+<br>
+
+- `--allow-root` flag : Allows wp-cli commands to be executed as the root user, bypassing the check for the current user's permissions.
+- `--path` flag : Allows to explicitly specify the path to the Wordpress installation directory. By default, wp-cli assumes that the current working directory is the root directory of the Wordpress installation.
+<br>
+
+- `php-fpm7.3 -F` : Used to start the php-fpm service and keep it running in the foreground.
+
+_____
 # Phind questions and answers
 
 *Phind is a GPT based AI search engine. Answers given here might lack some informations / might be inaccurate.*
