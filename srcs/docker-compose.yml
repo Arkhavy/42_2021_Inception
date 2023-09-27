@@ -27,10 +27,10 @@ services:
     build:
       context: ./requirements/mariadb
       args:
-        DB_NAME: $(DB_NAME)
-        DB_USER: $(DB_USER)
-        DB_USER_PW: $(DB_USER_PW)
-        DB_ROOT_PW: $(DB_ROOT_PW)
+        DB_NAME: ${DB_NAME}
+        DB_USER: ${DB_USER}
+        DB_USER_PW: ${DB_USER_PW}
+        DB_ROOT_PW: ${DB_ROOT_PW}
     env_file:
       - .env
     image: mariadb

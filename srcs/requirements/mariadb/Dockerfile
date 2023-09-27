@@ -14,9 +14,9 @@ RUN apt install -y mariadb-server dumb-init
 	# ALTER USER allows to change the authentication of a DB user
 	# GRANT is used to give all tables permissions
 	# FLUSH PRIVILEGES is used to update the changes done
-RUN service mysql start
-RUN mysql -u root -e	"CREATE DATABASE IF NOT EXISTS ${DB_NAME}; \
-						ALTER USER 'root'@'localhost' IDENTIFED BY '${DB_ROOT_PW}'; \
+RUN service mysql start \
+&& mysql -u root -e	"CREATE DATABASE IF NOT EXISTS ${DB_NAME}; \
+						ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PW}'; \
 						CREATE USER ${DB_USER}@'%' IDENTIFIED BY '${DB_USER_PW}'; \
 						GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'%'; \
 						FLUSH PRIVILEGES;"

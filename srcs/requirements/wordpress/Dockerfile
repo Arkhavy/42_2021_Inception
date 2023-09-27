@@ -12,7 +12,7 @@ EXPOSE 9000
 
 COPY /tools/entrypoint.sh /tmp
 
-COPY /tools/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
