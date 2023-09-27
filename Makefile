@@ -6,7 +6,7 @@
 #    By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:16:03 by ljohnson          #+#    #+#              #
-#    Updated: 2023/09/05 11:43:18 by ljohnson         ###   ########lyon.fr    #
+#    Updated: 2023/09/27 14:52:32 by ljohnson         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ P_WORDPRESS		:=	$(addprefix $(P_REQ),wordpress/)
 #//////////////////////////////////////////////////////////////////////////////
 
 # Commands & Flags
-COMPOSE	:= docker-compose -f $(P_SRCS)docker-compose.yml -p $(NAME)
+COMPOSE	:= docker compose -f $(P_SRCS)docker-compose.yml -p $(NAME)
 RM		:=	rm -rf
 MKDIR	:= mkdir -p
 

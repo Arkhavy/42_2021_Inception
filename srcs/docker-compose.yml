@@ -70,17 +70,17 @@ networks:
 # Volumes
 #//////////////////////////////////////////////////////////////////////////////
 volumes:
-	mariadb:
-		name: mariadb
-		driver: local
-		driver_opts:
-			type: none
-			o: bind
-			device: /home/arkhavy/data/mariadb ###################################################################### USER NEED TO CHANGE
-	wordpress:
-		name: wordpress
-		driver: local
-		driver_opts:
-			type: none
-			o: bind
-			device: /home/arkhavy/data/wordpress ######################################################################### USER NEED TO CHANGE
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/arkhavy/data/mariadb ###################################################################### USER NEED TO CHANGE
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/arkhavy/data/wordpress ######################################################################### USER NEED TO CHANGE
