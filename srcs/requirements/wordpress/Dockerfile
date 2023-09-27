@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt-get update -y && apt-get upgrade -y
-RUN apt-get install -y dumb-init php-fpm php-mysqli
+RUN apt-get install -y dumb-init php-fpm php-mysqli curl
 
 ADD		https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/local/bin/wp
 RUN		chmod +x /usr/local/bin/wp

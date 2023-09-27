@@ -6,7 +6,7 @@
 #    By: ljohnson <ljohnson@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:16:03 by ljohnson          #+#    #+#              #
-#    Updated: 2023/09/27 14:52:32 by ljohnson         ###   ########lyon.fr    #
+#    Updated: 2023/09/27 16:52:49 by ljohnson         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,8 @@ clean:
 
 fclean:
 	$(MAKE) clean
-	sudo $(RM) /home/$(USER)/data/wordpress
-	sudo $(RM) /home/$(USER)/data/mariadb
+	sudo $(RM) /home/$(USER)/data/wordpress/*
+	sudo $(RM) /home/$(USER)/data/mariadb/*
 
 prune:
 	$(MAKE) fclean

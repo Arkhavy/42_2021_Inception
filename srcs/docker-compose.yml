@@ -10,7 +10,7 @@ services:
       - wordpress
     build:
       context: ./requirements/nginx
-    image : nginx
+    image: nginx
     volumes:
       - wordpress:/var/www/html/wordpress
     networks:
@@ -25,7 +25,7 @@ services:
   mariadb:
     container_name: mariadb
     build:
-      context: ./requirements/mariadb
+      context: ./requirements/mariadb/
       args:
         DB_NAME: ${DB_NAME}
         DB_USER: ${DB_USER}
