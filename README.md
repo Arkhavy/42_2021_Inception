@@ -131,7 +131,7 @@ _____
 # Wordpress / php-fpm Part
 
 - [wp-cli : Wordpress Command Line Interface](https://github.com/wp-cli/wp-cli)
-- [wp-cli : wp-cli complete list of commands commands](https://developer.wordpress.org/cli/commands/)
+- [wp-cli : wp-cli complete list of commands](https://developer.wordpress.org/cli/commands/)
 - [PHP-FPM](https://www.php.net/manual/en/install.fpm.php), or `PHP FastCGI Process Manager` is an implementation commonly used with web servers like nginx to handle php requests.
 <br>
 
