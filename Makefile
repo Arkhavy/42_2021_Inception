@@ -63,12 +63,12 @@ clean:
 
 fclean:
 	$(MAKE) clean
-	sudo $(RM) /home/$(USER)/data/wordpress/*
-	sudo $(RM) /home/$(USER)/data/mariadb/*
+	$(RM) /home/$(USER)/data/wordpress/*
+	$(RM) /home/$(USER)/data/mariadb/*
 
 prune:
 	$(MAKE) fclean
-	sudo docker system prune -f -a --volumes
+	docker system prune -f -a --volumes
 
 re :
 	$(MAKE) fclean
