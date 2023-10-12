@@ -76,11 +76,11 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/arkhavy/data/mariadb ###################################################################### USER NEED TO CHANGE
+      device: /home/ljohnson/data/mariadb
   wordpress:
     name: wordpress
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/arkhavy/data/wordpress ######################################################################### USER NEED TO CHANGE
+      device: /home/ljohnson/data/wordpress

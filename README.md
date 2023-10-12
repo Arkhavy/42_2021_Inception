@@ -152,7 +152,39 @@ _____
 
 - `php-fpm7.3 -F` : Used to start the php-fpm service and keep it running in the foreground.
 
-*personal notes : got some problems with wp-cli 2.8 that prevented me from doing the installation with some of the commands listed above, an older version might fix a lot of things depending on the problem you face.*
+*Personal notes : got some problems with wp-cli 2.8 that prevented me from doing the installation with some of the commands listed above, an older version might fix a lot of things depending on the problem you face.*
+
+_____
+# VM Configuration / Checking things in the project
+
+*Personal notes : The following checks are the minimum for a working project. Some checks might be missing or be incomplete, feel free to do your own as well, if you feel like helping, you can contact me so I can add those here !*
+
+- adding the line `127.0.0.1	login.42.fr` in the file `/etc/hosts` so localhost is assigned to the given domain name
+<br>
+
+**Some Docker commands** :
+- `docker exec -it <container_tag> bash` : access the named container using bash.
+- `docker ps` : Display containers currently running.
+- `docker volume ls` : Display a list of volumes currently available.
+- `docker volume inspect <volume_name>` : display details about a specific volume, the mounted directory should be `login/data/volume_name` for both mandatory volumes.
+<br>
+
+**In MariaDB container** :
+- `mysql -u <username> -p` : Will connect you to the database and prompt you with the user password, you can use the root one as well as the db_user one, both must have a password.
+- `SHOW DATABASE;` : will list all available databases, should be two, the default one and yours that should be named by your dockerfile commands.
+- `USE <db_name>;` : Gives you access to the named database, Terminal prompt should look like `MariaDB [db_name]`.
+- `SHOW TABLES;` : Display a list of tables currently available in the current db.
+- `SELECT * FROM <table_name>;` : Should display the whole content defined by `*` of the selected table from the list given by `SHOW TABLES;`, `wp_users` should as example display admin and users currently registered to wordpress linked to the database.
+<br>
+
+**Some tests you can do with wordpress** :
+- login as a registered user through `https://login.42.fr/wp-admin`.
+- Add a comment to a page with that user.
+- login as admin through `https://login.42.fr/wp_admin`.
+- Approve the comment.
+- Go to the `page` section on the left and edit any existing page.
+- reboot VM or Docker itself.
+- Changes should still be visible if the database is not updated.
 
 _____
 # Phind questions and answers
