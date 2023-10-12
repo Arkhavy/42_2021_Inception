@@ -152,6 +152,8 @@ _____
 
 - `php-fpm7.3 -F` : Used to start the php-fpm service and keep it running in the foreground.
 
+*personal notes : got some problems with wp-cli 2.8 that prevented me from doing the installation with some of the commands listed above, an older version might fix a lot of things depending on the problem you face.*
+
 _____
 # Phind questions and answers
 
