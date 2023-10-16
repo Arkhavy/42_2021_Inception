@@ -22,7 +22,7 @@
 - `-v` : same as --volumes, removes named volumes declared in the docker-compose file and thoses attached to containers
 - `--remove-orphans` : Remove containers for services not defined in the docker-compose file
 
-#	[docker system](https://docs.docker.com/engine/reference/commandline/system/)
+###	[docker system](https://docs.docker.com/engine/reference/commandline/system/)
 
 ####	[docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/)
 
@@ -97,7 +97,7 @@ _____
 - `ADD` : Same as COPY but with TAR files extraction and URL handling.
 - `RUN` : Run any comand given in a new layer on top of the current image and commit the results. The commited image will be used for the next step in the Dockerfile.
 - `ENTRYPOINT` : Allows to configure a container that will run as an executable.
-- `CMD` : Provides defaults for an executing container. Can include an executable, if not, `ENTRYPOINT`` must be precised.
+- `CMD` : Provides defaults for an executing container. Can include an executable, if not, `ENTRYPOINT` must be precised.
 - `ARG` : Defines a variable that users can pass at build-time.
 - `EXPOSE` : Informs Docker that the container listens on the specified network ports at runtime. Purely informational, does not actually publish the port.
 - `ENV` : Sets the environment variable key-value pair. This value will be in the environment for all subsequent instructions in the build stage.
