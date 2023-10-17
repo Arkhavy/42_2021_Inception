@@ -49,7 +49,7 @@ All links from the list below are from this page : [Compose file version 3 refer
 - [`context`](https://docs.docker.com/compose/compose-file/compose-file-v3/#context) : Specifies the relative directory path where is located the Dockerfile of the service.
 - [`image`](https://docs.docker.com/compose/compose-file/compose-file-v3/#image) : Specify the image to start the container from. If build is also specified, it serves the purpose of a tag.
 - [`env_file`](https://docs.docker.com/compose/compose-file/compose-file-v3/#env_file) : Add environment variables from a file. can be a single value or a list.
-- [`environment`](https://docs.docker.com/compose/compose-file/compose-file-v3/#environment) : Allows setting up an environment variable in the container. Overrides env_file values if variables have the same name.
+- [`environment`](https://docs.docker.com/compose/compose-file/compose-file-v3/#environment) : Allows setting up an environment variable in the container. Overrides `env_file` values if variables have the same name.
 - [`depends_on`](https://docs.docker.com/compose/compose-file/compose-file-v3/#depends_on) : Specifies that a service depends on another service. `docker-compose up` starts services in dependency order.
 - [`ports`](https://docs.docker.com/compose/compose-file/compose-file-v3/#ports) : Used to map the container's port to the host machine.
 - [`init`](https://docs.docker.com/compose/compose-file/compose-file-v3/#init) : Runs an init inside the container that forwards signals and reaps processes.
