@@ -19,7 +19,7 @@
 
 ##### flags used
 - `--rmi all` : remove images used by services
-- `-v` : same as --volumes, removes named volumes declared in the docker-compose file and thoses attached to containers
+- `-v` : same as `--volumes`, removes named volumes declared in the docker-compose file and thoses attached to containers
 - `--remove-orphans` : Remove containers for services not defined in the docker-compose file
 
 ###	[docker system](https://docs.docker.com/engine/reference/commandline/system/)
@@ -27,8 +27,8 @@
 ####	[docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/)
 
 ##### flags used
-- `-f` : same as --force, do not prompt for confirmation
-- `-a` : same as --all, remove all unused images, containers, networks
+- `-f` : same as `--force`, do not prompt for confirmation
+- `-a` : same as `--all`, remove all unused images, containers, networks
 - `--volumes` : remove volumes too
 
 _____
